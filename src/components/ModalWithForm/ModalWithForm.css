@@ -11,7 +11,7 @@
   visibility: hidden;
 }
 
-.modal__opened {
+.modal_opened {
   visibility: visible;
 }
 
@@ -42,6 +42,7 @@
   max-width: 496px;
   width: 100%;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .modal__form {
@@ -86,10 +87,6 @@
 
 .modal__radio-input {
   margin-right: 5px;
-}
-
-.modal__label_type_radio {
-  padding-bottom: 8px;
 }
 
 .modal__label_type_radio:last-of-type {
