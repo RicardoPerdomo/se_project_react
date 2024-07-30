@@ -9,7 +9,7 @@ import { getItems, deleteItem, addItem } from "../../utils/Api";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import Profile from "../../Profile/Profile";
+import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 //
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";

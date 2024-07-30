@@ -1,5 +1,5 @@
 import "./ClothesSection.css";
-import ItemCard from "../components/ItemCard/ItemCard";
+import ItemCard from "../../ItemCard/ItemCard";
 import React from "react";
 //import { defaultClothingItems } from "../utils/constants";
 
