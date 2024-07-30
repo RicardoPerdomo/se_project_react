@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
+//
 import "./App.css";
+import "../Header/Header.css";
+//
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems } from "../../utils/Api";
+import { getItems, deleteItem, addItem } from "../../utils/Api";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
+import Profile from "../../Profile/Profile";
+import ItemModal from "../ItemModal/ItemModal";
+//
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+//
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import Profile from "../../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,8 +33,27 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const onAddItem = (values, onDone) => {
+    return addItem(values)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
+        onDone();
+      })
+      .catch(console.error);
+  };
+
+  const handleDeleteItem = (id) => {
+    return deleteItem(id)
+      .then(() => {
+        const updatedClothingItems = clothingItems.filter(
+          (item) => item._id !== id
+        );
+        setClothingItems(updatedClothingItems);
+      })
+      .catch((error) => {
+        console.error("Error deleting this item", error);
+      });
   };
 
   const handleAddClick = () => {
@@ -56,6 +78,7 @@ function App() {
       })
       .catch(console.error);
   }, []);
+  console.log(currentTemperatureUnit);
 
   useEffect(() => {
     getItems()
@@ -65,8 +88,6 @@ function App() {
       })
       .catch(console.error);
   }, []);
-
-  console.log(currentTemperatureUnit);
 
   return (
     <div className="page">
@@ -90,7 +111,13 @@ function App() {
 
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
 
@@ -108,6 +135,7 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
+            handleDeleteItem={handleDeleteItem}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
