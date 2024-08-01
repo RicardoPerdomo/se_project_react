@@ -1,10 +1,10 @@
 import "./ModalWithForm.css";
+import React from "react";
 
 function ModalWithForm({
   children,
   buttonText,
   title,
-  activeModal,
   onClose,
   isOpen,
   onSubmit,

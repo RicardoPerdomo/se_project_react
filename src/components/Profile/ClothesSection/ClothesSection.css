@@ -1,36 +1,56 @@
-.clothes-section__text-container {
+.clothes-section {
+  margin: 35px 0 -5px;
+  padding: 0;
+}
+
+.clothes-section__header {
   display: flex;
-  gap: 16px;
-  font-family: "CabinetGrotesk-Medium";
+  gap: 20px;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-size: 20px;
-  font-weight: 700;
-  line-height: 24.8px;
-  text-align: left;
-  color: black;
-  margin-top: 20px;
+  line-height: 1.24;
+  color: #000;
+  margin: 0 0 16px;
 }
 
-.clothes-section__your-items {
+.clothes-section__items-title {
   margin: 0;
+  padding: 0;
 }
 
-.clothes-section__add-button {
+.clothes-section__add-card-button {
+  margin: 0;
+  padding: 0;
   border: none;
+  cursor: pointer;
+  transition: opacity 0.5s linear;
+  background-color: transparent;
   opacity: 0.6;
 }
 
-.clothes-section__add-button:hover {
-  cursor: pointer;
+.clothes-section__add-card-button:hover {
+  opacity: 0.3;
 }
 
-.clothes-section__cards-list {
-  margin: 0;
-  margin-top: 16px;
+.clothes-section__items {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 19px;
-  list-style-type: none;
-  margin-top: 35px;
+  margin: 0;
   padding: 0;
+  gap: 10px;
+  max-width: 1015px;
+}
+
+@media screen and (max-width: 750px) {
+  .clothes-section {
+    margin: 20px 0 -5px;
+  }
+
+  .clothes-section__items {
+    gap: 15px;
+  }
+
+  .clothes-section__header {
+    justify-content: space-between;
+  }
 }

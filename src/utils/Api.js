@@ -26,4 +26,4 @@ function deleteItem(id) {
   }).then(processServerResponse);
 }
 
-export { getItems, deleteItem, addItem };
+export { getItems, deleteItem, addItem, processResponse };

@@ -89,6 +89,10 @@
   margin-right: 5px;
 }
 
+.modal__label_type_radio {
+  padding-bottom: 8px;
+}
+
 .modal__label_type_radio:last-of-type {
   padding-bottom: 0px;
 }
