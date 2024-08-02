@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   gap: 116px;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 530px) {

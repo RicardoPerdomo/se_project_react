@@ -1,32 +1,26 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
-import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
-  const { CurrentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const convertTemperature = (tempF, unit) => {
-    return unit === "C" ? ((tempF - 32) * 5) / 9 : tempF;
-  };
-
-  const temperature = convertTemperature(
-    weatherData.temp.F,
-    CurrentTemperatureUnit
-  ).toFixed(1);
+  const currentTemperature = useContext(CurrentTemperatureUnitContext);
 
   return (
-    <main className="main">
-      {" "}
+    <main>
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {temperature} &deg; {CurrentTemperatureUnit} / You may want
-          to wear:
+          Today is{" "}
+          {currentTemperature.currentTemperatureUnit === "F"
+            ? weatherData.temp.F
+            : weatherData.temp.C}{" "}
+          &deg; {currentTemperature.currentTemperatureUnit === "F" ? "F" : "C"}{" "}
+          / You may want to wear:
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

@@ -1,37 +1,37 @@
 import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
-import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import React, { useContext } from "react";
 
 function WeatherCard({ weatherData }) {
-  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const currentTemperature = useContext(CurrentTemperatureUnitContext);
 
-  const weatherOption =
-    weatherOptions.find((option) => {
-      return (
-        option.day === weatherData.isDay &&
-        option.condition === weatherData.condition
-      );
-    }) || defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
+  const filteredOptions = weatherOptions.filter((option) => {
+    return (
+      option.day === weatherData.isDay &&
+      option.condition === weatherData.condition
+    );
+  });
 
-  const convertTemperature = (tempF, unit) => {
-    return unit === "C" ? ((tempF - 32) * 5) / 9 : tempF;
-  };
-
-  const temperature = convertTemperature(
-    weatherData.temp.F,
-    currentTemperatureUnit
-  ).toFixed(1);
-
+  let weatherOption;
+  if (filteredOptions.length === 0) {
+    weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
+  } else {
+    weatherOption = filteredOptions[0];
+  }
+  console.log(currentTemperature);
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
-        {temperature} &deg; {currentTemperatureUnit}
+        {currentTemperature.currentTemperatureUnit === "F"
+          ? weatherData.temp.F
+          : weatherData.temp.C}{" "}
+        &deg; {currentTemperature.currentTemperatureUnit === "F" ? "F" : "C"}
       </p>
       <img
-        src={weatherOption.url}
-        alt={`Card showing ${weatherOption.day ? "day" : "night"} ${
-          weatherOption.condition
+        src={weatherOption?.url}
+        alt={`Card showing ${weatherOption?.day ? "day" : "night"} time ${
+          weatherOption?.condition
         } weather`}
         className="weather-card__image"
       />
