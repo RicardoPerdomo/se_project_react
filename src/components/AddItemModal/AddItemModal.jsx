@@ -12,11 +12,10 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weather }).then(() => {
-      setName("");
-      setImageUrl("");
-      setWeather("");
-    });
+    onAddItem({ name, imageUrl, weather });
+    setName("");
+    setImageUrl("");
+    setWeather("");
   };
 
   return (
