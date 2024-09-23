@@ -68,7 +68,7 @@ const Register = ({ isOpen, handleRegistration, onClose, navigateToLogin }) => {
           placeholder="Name"
           name="name"
           value={data.name}
-          onChange={onChange}
+          onChange={handleChange}
         />
       </label>
       <label htmlFor="avatar" className="modal__label">

@@ -57,7 +57,6 @@ function App() {
     }
     auth
       .authorize(email, password)
-      .authorize(email, password)
       .then((data) => {
         console.log(data);
         if (data.token) {
