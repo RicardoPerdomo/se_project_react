@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
 import "./RegisterModal.css";
-const Register = ({ isOpen, handleRegistration, onClose }) => {
+
+const Register = ({ isOpen, handleRegistration, onClose, navigateToLogin }) => {
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -68,6 +68,7 @@ const Register = ({ isOpen, handleRegistration, onClose }) => {
           placeholder="Name"
           name="name"
           value={data.name}
+          onChange={onChange}
         />
       </label>
       <label htmlFor="avatar" className="modal__label">
@@ -86,7 +87,11 @@ const Register = ({ isOpen, handleRegistration, onClose }) => {
         <button type="submit" className="register__link">
           Sign up
         </button>
-        <button to="login" className="register__login-link">
+        <button
+          to="login"
+          className="register__login-link"
+          onClick={navigateToLogin}
+        >
           Or Log in
         </button>
       </div>
