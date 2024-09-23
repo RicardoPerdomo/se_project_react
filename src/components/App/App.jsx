@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 //
 import "./App.css";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -10,14 +10,14 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, deleteItem, addItem } from "../../utils/Api";
+import { getItems, deleteItem, addItem } from "../../utils/api";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import * as api from "../../utils/Api";
+import * as api from "../../utils/api";
 import * as auth from "../../utils/auth";
 
 import { setToken, getToken, removeToken } from "../../utils/token";
@@ -36,7 +36,7 @@ function App() {
     name: "",
     email: "",
     avatar: "",
-    _id,
+    _id: "",
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
