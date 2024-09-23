@@ -7,11 +7,18 @@ const Profile = ({
   weatherData,
   handleAddClick,
   clothingItems,
+  handleEditProfileClick,
+  handleSignOut,
+  onCardLike,
 }) => {
   return (
     <div className="profile">
       <section className="profile__sidebar">
         <Sidebar />
+        <Sidebar
+          handleEditProfileClick={handleEditProfileClick}
+          handleSignOut={handleSignOut}
+        />
       </section>
 
       <section className="profile__clothing-items">
@@ -20,6 +27,7 @@ const Profile = ({
           handleCardClick={handleCardClick}
           handleAddClick={handleAddClick}
           clothingItems={clothingItems}
+          onCardLike={onCardLike}
         />
       </section>
     </div>
