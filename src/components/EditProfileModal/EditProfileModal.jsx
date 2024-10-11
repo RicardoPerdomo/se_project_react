@@ -30,8 +30,9 @@ export const EditProfileModal = ({ onClose, isOpen, handleEditUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
-    handleEditUser(data);
-    onClose();
+    handleEditUser(data).then(() => {
+      onClose();
+    });
   };
 
   return (

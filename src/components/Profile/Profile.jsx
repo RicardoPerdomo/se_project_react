@@ -14,8 +14,7 @@ const Profile = ({
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <Sidebar />
-        <Sidebar
+        <SideBar
           handleEditProfileClick={handleEditProfileClick}
           handleSignOut={handleSignOut}
         />

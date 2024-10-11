@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 //
 import "./App.css";
 import CurrentUserContext from "../../context/CurrentUserContext";
@@ -39,15 +39,15 @@ function App() {
     _id: "",
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
-  //const location = useLocation();
+
   const handleRegistration = ({ name, email, password, avatar }) => {
-    auth
+    return auth
       .register(name, password, email, avatar)
       .then(() => {
-        // close active modal
-        // sign in user
         handleLogin({ email, password });
+        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -55,7 +55,7 @@ function App() {
     if (!email || !password) {
       return;
     }
-    auth
+    return auth
       .authorize(email, password)
       .then((data) => {
         console.log(data);
@@ -124,7 +124,7 @@ function App() {
 
   const handleEditUser = (data) => {
     const jwt = getToken();
-    api
+    return api
       .updateCurrentUser(data, jwt)
       .then((res) => {
         setCurrentUser(res);

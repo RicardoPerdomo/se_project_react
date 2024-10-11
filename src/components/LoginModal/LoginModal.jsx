@@ -9,6 +9,10 @@ const Login = ({ handleLogin, isOpen, onClose, navigateToSignUp }) => {
     password: "",
   });
 
+  const isFormValid = () => {
+    return data.email && data.password;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -19,7 +23,9 @@ const Login = ({ handleLogin, isOpen, onClose, navigateToSignUp }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(data);
+    handleLogin(data).then(() => {
+      onClose();
+    });
   };
 
   return (
@@ -56,10 +62,14 @@ const Login = ({ handleLogin, isOpen, onClose, navigateToSignUp }) => {
         />
       </label>
       <div className="login__button-container">
-        <button type="submit" className="login__link">
+        <button
+          type="submit"
+          className={`register__link ${isFormValid() ? "active" : ""}`}
+        >
           Log in
         </button>
         <button
+          type="button"
           to="login"
           className="login__login-link"
           onClick={navigateToSignUp}

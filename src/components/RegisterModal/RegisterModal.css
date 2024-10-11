@@ -18,6 +18,11 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.register__link.active {
+  background-color: #000;
+}
+
 .register__login-link {
   border: none;
   width: 73px;
