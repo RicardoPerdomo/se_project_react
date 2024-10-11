@@ -1,9 +1,8 @@
 import "./SideBar.css";
-//import avatar from "../../../assets/avatar.svg";
 import { useContext } from "react";
 import CurrentUserContext from "../../../context/CurrentUserContext";
 
-function Sidebar({ handleEditProfileClick, handleSignOut }) {
+function SideBar({ handleEditProfileClick, handleSignOut }) {
   const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
@@ -29,4 +28,4 @@ function Sidebar({ handleEditProfileClick, handleSignOut }) {
   );
 }
 
-export default Sidebar;
+export default SideBar;
