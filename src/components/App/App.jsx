@@ -144,7 +144,7 @@ function App() {
 
   const handleDeleteItem = (id) => {
     const jwt = getToken();
-    deleteItem(id, token)
+    deleteItem(id, jwt)
       .then(() => {
         setClothingItems((clothingItems) =>
           clothingItems.filter((item) => item._id !== id)
