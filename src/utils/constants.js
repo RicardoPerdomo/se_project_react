@@ -125,4 +125,11 @@ export const coordinates = {
   longitude: -82.459198,
 };
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwrsubdomain.strangled.net"
+    : "http://localhost:3001";
+
+    export { BASE_URL };
+
 export const APIkey = "1520b50da20f9a949b8832efae7da05e";

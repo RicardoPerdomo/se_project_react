@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
@@ -9,11 +9,11 @@ function request(url, options) {
 }
 
 function getItems() {
-  return request(`${baseUrl}/items`);
+  return request(`${BASE_URL}/items`);
 }
 
 function addItem(item, token) {
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function addItem(item, token) {
 }
 
 function deleteItem(id, token) {
-  return request(`${baseUrl}/items/${id}`, {
+  return request(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ function deleteItem(id, token) {
 }
 
 function addCardLike(cardId, token) {
-  return request(`${baseUrl}/items/${cardId}/likes`, {
+  return request(`${BASE_URL}/items/${cardId}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function addCardLike(cardId, token) {
   });
 }
 function removeCardLike(cardId, token) {
-  return request(`${baseUrl}/items/${cardId}/likes`, {
+  return request(`${BASE_URL}/items/${cardId}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function removeCardLike(cardId, token) {
 }
 
 function updateCurrentUser(user, token) {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -72,7 +72,7 @@ function updateCurrentUser(user, token) {
 }
 
 export const getUserInfo = (token) => {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
